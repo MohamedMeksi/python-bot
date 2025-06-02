@@ -1,12 +1,12 @@
-import logging
+from flask import Flask
 
-from app import create_app
+app = Flask(__name__)
 
-app = create_app()
+@app.route("/")
+def home():
+    return "Hello depuis Flask sur Vercel !"
 
+# Pour que Vercel détecte automatiquement app en tant que handler WSGI,
+# il suffit d’avoir l’objet `app` au niveau global.
 if __name__ == "__main__":
-    logging.info("Flask app started")
-    print("---------------------------------------------------------")
-    print("Flask application is running and accessible at 0.0.0.0:8000")
-    print("---------------------------------------------------------")
-    app.run(host="0.0.0.0", port=8000)
+    app.run()
